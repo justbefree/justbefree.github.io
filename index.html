@@ -8,79 +8,56 @@
   <meta name="keywords" content="李壮,lizuang,lizhuang.xyz,wwww.lizhuang.xyz,李壮个人主页,优秀是一种习惯,Strong Lee,just be free,justbefree">
   <link rel="shortcut icon" href="ico/favicon.ico" type="image/x-icon"/>
   <style type="text/css">
-    *{margin: 0;padding: 0;font-family: "Lucida Grande";}
-    .abs{position: absolute;}
-    .rel{position: relative;}
-    .space{-webkit-perspective: 5000px;-moz-perspective: 5000px;-ms-perspective: 5000px;-o-perspective: 5000px;perspective: 5000px;transform-style: preserve-3d;-webkit-transform-style: preserve-3d;-moz-transform-style: preserve-3d;-ms-transform-style: preserve-3d;}
-    #d3_loading{width: 100%;height: 100%;background:#2D001F;}
-    #d3box{
-      width: 200px;
-      height: 200px;
-      left:calc(50% - 100px);
-      transform-origin:100px 100px 100px;
-      transform:rotateY(30deg) rotateX(0deg);
-      display: none;
+    html,body {
+      width: 100%;
+      height: 100%;
     }
-    ::selection{background: red;color: #fff;}
-    #d3box ul li{width: 100%;height: 100%;border: 2px solid none;left: 0px;top: 0px;box-shadow: 5px 5px 30px none;overflow: hidden;
-     word-wrap: break-word;
-    word-break: break-all;}
-    #d3box ul li:nth-of-type(1){transform:rotateY(-90deg);transform-origin:left;border: 2px solid yellow}
-    #d3box ul li:nth-of-type(2){transform:rotateY(90deg);transform-origin:right;border: 2px solid yellow}
-    #d3box ul li:nth-of-type(3){transform:rotateX(-90deg);transform-origin:bottom;border: 2px solid yellow}
-    #d3box ul li:nth-of-type(4){transform:rotateX(90deg);transform-origin:top;border: 2px solid yellow}
-    #d3box ul li:nth-of-type(5){transform:translateZ(200px);border: 2px solid yellow}
-    .code{color: #B2E566;width: 200px;height: 200px;background:#2D001F;text-align: center;font-size: 20px;}
-    .ease{transition:all cubic-bezier(.25,.1,.25,1) .6s;-webkit-transition:all cubic-bezier(.25,.1,.25,1) .6s;-moz-transition:all cubic-bezier(.25,.1,.25,1) .6s;-ms-transition:all cubic-bezier(.25,.1,.25,1) .6s;-o-transition:all cubic-bezier(.25,.1,.25,1) .6s;}
+    h1{
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: 300px;
+      margin-left: -150px;
+      height: 100px;
+      margin-top: -50px;
+      text-align: center;
+      user-select: none;
+      color: #fff;
+    }
+    *{margin: 0;padding: 0;font-family: "Lucida Grande";}
+    #d3_loading{width: 100%;height: 100%;background:#2D001F;}
   </style>
 </head>
 <body>
   <div id="d3_loading">
-    <div id="d3box" class="rel space">
-      <ul>
-        <li class="abs code"></li>
-        <li class="abs code"></li>
-        <li class="abs code"></li>
-        <li class="abs code"></li>
-        <li class="abs code"></li>
-        <li class="abs code"></li>
-      </ul>
-    </div>
+    <h1 id="greeting">Hello</h1>
+    <script type="text/javascript">
+      "use strict";
+      (function () {
+        var greeting = ["Hello", "你好", "안녕하세요", "こんにちは", "Bonjour", "Moiẽn", "Hallå", "Hallo", "Halló", "Tungjatjeta", "Alo", "Illāc", "Ciao", "Hola", "Bonjou", "Olá", "‏هتاف للترحيب, ‏أهلا", "السلام عليكم", "درود", "הלו", "גוט־מאָרגן", "สวัสดีครับ", "नमस्ते", "नम्स्कार"];
+        var length = greeting.length;
+
+        function d() {
+          var index = 0;
+          setInterval(function () {
+            document.getElementById("greeting").innerHTML = greeting[index % length];
+            document.title = greeting[index % length];
+            index += 1;
+          }, 2000);
+        }
+        d();
+        console &&
+          console.log(
+            "%c Just be free %c I know you will find me! %c",
+            "background:#35495e ; font-size: 20px; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff",
+            "background:#007aff ; padding: 1px; border-radius: 0 3px 3px 0; font-size: 20px;  color: #fff",
+            "background:transparent"
+          );
+        window.addEventListener("resize", function() {
+          window.location.href = "https://github.com/justbefree";
+        }, false);
+      })();
+    </script>
   </div>
-  <script type="text/javascript">
-    (function() {
-      function getSize() {
-        return [document.documentElement.clientWidth,document.documentElement.clientHeight];
-      }
-      function init(pages) {
-        var i = 0;
-        var oD3 = document.getElementById('d3_loading');
-        var oD3_box = document.getElementById('d3box');
-        oD3.style.height = getSize()[1] + 'px';
-        oD3_box.style.display = "block";
-        oD3_box.style.top = (getSize()[1] - oD3_box.offsetHeight)/2 + 'px';
-        setInterval(function(){
-          oD3_box.style.transform = "rotateY("+i+"deg) rotateX("+i+"deg)";
-          i++;
-        },30);
-        var aCodes = document.getElementsByClassName('code');
-        code(aCodes);
-      }
-      function code(obj) { 
-        var codeString = "";
-        for (var i = 0; i < 200; i++) {
-          codeString += Math.round(Math.random());
-        }
-        for (var j = 0; j < obj.length; j++) {
-          obj[j].innerHTML = codeString;
-        }
-        var timer = setTimeout(function(){
-          clearTimeout(timer);
-          code(obj);
-        }, 100);
-      }
-      init();
-    })();
-  </script>
 </body>
 </html>
